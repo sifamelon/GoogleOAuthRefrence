@@ -78,8 +78,8 @@ const LoginPage = ({ navigation }) => {
                         paddingLeft: 22
                     }}>
                         <TextInput
-                         value={name.password}
-                         onChangeText={(newText)=>setname({...name,password:newText})}
+                            value={name.password}
+                             onChangeText={(newText)=>setname({...name,password:newText})}
                             placeholder='Enter your password'
                             placeholderTextColor={COLORS.black}
                             secureTextEntry={isPasswordShown}
