@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { View, Button, Alert, Text } from 'react-native';
+import { View, Button, Alert, Text, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import Pokemon from './Components/Pokemon';
 import Logout from './Components/Logout';
+import LoginPage from './Components/LoginPage';
 
 GoogleSignin.configure({
   webClientId: '11046146428-ppdiummm9gp7hj21pe3ji23o5jdbi92t.apps.googleusercontent.com',
@@ -55,6 +56,8 @@ export default function App() {
   };
 
   return (
+    <>
+    <StatusBar/>
     <NavigationContainer>
       {user ? (
         <Tab.Navigator>
@@ -62,10 +65,12 @@ export default function App() {
           <Tab.Screen name='Logout' initialParams={{user,signOut,setUser}} component={Logout} options={{tabBarActiveTintColor:"purple",tabBarActiveBackgroundColor:"lightblue",tabBarIcon:()=><AntDesign name="profile" size={24} color="black" />}} />
         </Tab.Navigator>
       ) : (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Button title="Sign In with Google" onPress={signIn} />
-        </View>
+        // <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        //   <Button title="Sign In with Google" onPress={signIn} />
+        // </View>
+        <LoginPage/>
       )}
     </NavigationContainer>
+    </>
   );
 }
