@@ -17,7 +17,6 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.googlesifen.com"
-
     },
     "android": {
       "adaptiveIcon": {
@@ -36,7 +35,12 @@
       "eas": {
         "projectId": "e0430547-3fe2-4508-882d-cb5add818848"
       }
-
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/e0430547-3fe2-4508-882d-cb5add818848"
     }
   }
 }
