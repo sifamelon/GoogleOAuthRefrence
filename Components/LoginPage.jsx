@@ -1,4 +1,4 @@
-import { View, Text, Image , Pressable, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, Image , Pressable, TextInput, TouchableOpacity, Alert } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from "react-native-safe-area-context";
 import COLORS from '../Constant/Colors';
@@ -9,6 +9,7 @@ import Button from '../Constant/Button';
 const LoginPage = ({ navigation }) => {
     const [isPasswordShown, setIsPasswordShown] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
+    const [name, setname] = useState({email:"",password:""})
     
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
@@ -20,7 +21,7 @@ const LoginPage = ({ navigation }) => {
                         marginVertical: 12,
                         color: COLORS.black
                     }}>
-                        Hi Welcome Back ! 👋
+                        Hi Welcome Back ! 👋 
                     </Text>
 
                     <Text style={{
@@ -47,6 +48,8 @@ const LoginPage = ({ navigation }) => {
                         paddingLeft: 22
                     }}>
                         <TextInput
+                        value={name.email}
+                        onChangeText={(newText)=>setname({...name,email:newText})}
                             placeholder='Enter your email address'
                             placeholderTextColor={COLORS.black}
                             keyboardType='email-address'
@@ -75,6 +78,8 @@ const LoginPage = ({ navigation }) => {
                         paddingLeft: 22
                     }}>
                         <TextInput
+                         value={name.password}
+                         onChangeText={(newText)=>setname({...name,password:newText})}
                             placeholder='Enter your password'
                             placeholderTextColor={COLORS.black}
                             secureTextEntry={isPasswordShown}
@@ -116,6 +121,7 @@ const LoginPage = ({ navigation }) => {
                         marginTop: 18,
                         marginBottom: 4,
                     }}
+                    onPress={()=>Alert.alert()}
                 />
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 20 }}>
