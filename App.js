@@ -20,20 +20,20 @@ export default function App() {
   useEffect(() => {
     // You may want to check if the user is already signed in on component mount
     // and update the state accordingly
-    // checkLoggedInStatus();
+    checkLoggedInStatus();
     configureGoogleSignIn()
   }, [configureGoogleSignIn]);
-  // async function checkLoggedInStatus() {
-  //   try {
-      // const storedUser = await AsyncStorage.getItem('user');
-  //     if (storedUser) {
-  //       // User is logged in, update app state or Redux store
-  //       setUser(JSON.parse(storedUser));
-  //     }
-  //   } catch (error) {
-  //     console.error('Error checking login status:', error);
-  //   }
-  // };
+  async function checkLoggedInStatus() {
+    try {
+      const storedUser = await AsyncStorage.getItem('user');
+      if (storedUser) {
+        // User is logged in, update app state or Redux store
+        setUser(JSON.parse(storedUser));
+      }
+    } catch (error) {
+      console.error('Error checking login status:', error);
+    }
+  };
  
   return (
     <>
