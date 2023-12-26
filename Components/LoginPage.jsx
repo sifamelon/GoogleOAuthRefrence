@@ -1,16 +1,31 @@
 import { View, Text, Image , Pressable, TextInput, TouchableOpacity, Alert } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from "react-native-safe-area-context";
 import COLORS from '../Constant/Colors';
 import { Ionicons } from "@expo/vector-icons";
-// import Checkbox from "expo-checkbox"
+import GoogleOAuth from '../Constant/Google'
 import Button from '../Constant/Button';
 
-const LoginPage = ({ navigation }) => {
+const LoginPage = ({navigation,route}) => {
+    const {signInWithGoogle}=route.params
     const [isPasswordShown, setIsPasswordShown] = useState(false);
-    const [isChecked, setIsChecked] = useState(false);
-    const [name, setname] = useState({email:"",password:""})
+    const {configureGoogleSignIn}=GoogleOAuth()
+    useEffect(() => {
+        configureGoogleSignIn()
+    },[] )
     
+    const [name, setname] = useState({email:"",password:""})
+
+    // const signIn = async () => {
+    //     try {
+    //       await GoogleSignin.hasPlayServices();
+    //       const userInfo = await GoogleSignin.signIn();
+    //       setUser(userInfo.user);
+    //       console.log(userInfo.user);
+    //     } catch (error) {
+    //       handleSignInError(error);
+    //     }
+    //   };s
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
             <View style={{ flex: 1, marginHorizontal: 22 }}>
@@ -121,7 +136,7 @@ const LoginPage = ({ navigation }) => {
                         marginTop: 18,
                         marginBottom: 4,
                     }}
-                    onPress={()=>Alert.alert()}
+                    onPress={()=>Alert.alert("User profile",`user Email:${name.email}\nuser Password:${name.password}`)}
                 />
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 20 }}>
@@ -176,7 +191,7 @@ const LoginPage = ({ navigation }) => {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        onPress={() => console.log("Pressed")}
+                        onPress={signInWithGoogle}
                         style={{
                             flex: 1,
                             alignItems: 'center',
@@ -210,7 +225,7 @@ const LoginPage = ({ navigation }) => {
                 }}>
                     <Text style={{ fontSize: 16, color: COLORS.black }}>Don't have an account ? </Text>
                     <Pressable
-                        onPress={() => navigation.navigate("Signup")}
+                        onPress={() => navigation.navigate("SingUP")}
                     >
                         <Text style={{
                             fontSize: 16,
