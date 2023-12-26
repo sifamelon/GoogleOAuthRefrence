@@ -1,6 +1,6 @@
 
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import AsyncStorage from '@react-native-community/async-storage'
+// import AsyncStorage from '@react-native-community/async-storage'
 import { useState } from 'react';
 const configureGoogleSignIn = async () => {
     try {
@@ -19,7 +19,7 @@ const configureGoogleSignIn = async () => {
           await GoogleSignin.hasPlayServices();
           const userInfo = await GoogleSignin.signIn();
           setUser(userInfo.user);
-          await AsyncStorage.setItem('user', JSON.stringify(userInfo.user));
+          // await AsyncStorage.setItem('user', JSON.stringify(userInfo.user));
         //   console.log(userInfo.user);
         } catch (error) {
           handleSignInError(error);
@@ -38,7 +38,7 @@ const configureGoogleSignIn = async () => {
         try {
           await GoogleSignin.revokeAccess();
           await GoogleSignin.signOut();
-          await AsyncStorage.removeItem('user');
+          // await AsyncStorage.removeItem('user');
           setUser(null);
       
         } catch (error) {
