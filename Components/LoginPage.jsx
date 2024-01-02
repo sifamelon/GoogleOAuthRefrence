@@ -6,27 +6,20 @@ import { Ionicons } from "@expo/vector-icons";
 import GoogleOAuth from '../Constant/Google'
 import Button from '../Constant/Button';
 
+
+
 const LoginPage = ({navigation,route}) => {
     const {signInWithGoogle}=route.params
     const [isPasswordShown, setIsPasswordShown] = useState(false);
     const {configureGoogleSignIn}=GoogleOAuth()
     useEffect(() => {
         configureGoogleSignIn()
+        // console.log(AsyncStorage.getItem("user"));
     },[] )
     
     const [name, setname] = useState({email:"",password:""})
-
-    // const signIn = async () => {
-    //     try {
-    //       await GoogleSignin.hasPlayServices();
-    //       const userInfo = await GoogleSignin.signIn();
-    //       setUser(userInfo.user);
-    //       console.log(userInfo.user);
-    //     } catch (error) {
-    //       handleSignInError(error);
-    //     }
-    //   };s
     return (
+        <>
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
             <View style={{ flex: 1, marginHorizontal: 22 }}>
                 <View style={{ marginVertical: 22 }}>
@@ -237,6 +230,7 @@ const LoginPage = ({navigation,route}) => {
                 </View>
             </View>
         </SafeAreaView>
+        </>
     )
 }
 
